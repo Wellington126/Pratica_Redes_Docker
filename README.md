@@ -62,7 +62,7 @@ Além disso, `h1` e `h2` receberam a capability `NET_ADMIN` para permitir a adi�
 
 ---
 
-## 3. Capturas de tela / saídas dos comandos verificando a conectividade
+## 3. Saídas dos comandos verificando a conectividade
 
 ### Ping h1 → h2 (20 pacotes)
 
