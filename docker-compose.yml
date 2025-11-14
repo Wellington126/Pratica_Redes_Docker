@@ -1,0 +1,48 @@
+version: "3.8"
+services:
+  h1:
+    build: .
+    container_name: h1
+    tty: true
+    cap_add:
+      - NET_ADMIN
+    networks:
+      rede1:
+        ipv4_address: 172.30.0.10
+
+  roteador:
+    build: .
+    container_name: roteador
+    tty: true
+    privileged: true
+    sysctls:
+      net.ipv4.ip_forward: "1"
+    networks:
+      rede1:
+        ipv4_address: 172.30.0.254
+      rede2:
+        ipv4_address: 172.31.0.254
+
+  h2:
+    build: .
+    container_name: h2
+    tty: true
+    cap_add:
+      - NET_ADMIN
+    networks:
+      rede2:
+        ipv4_address: 172.31.0.10
+
+networks:
+  rede1:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.30.0.0/24
+
+  rede2:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.31.0.0/24
+
